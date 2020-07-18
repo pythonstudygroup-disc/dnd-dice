@@ -29,7 +29,7 @@ def roll(dice):
         if random20 == 20:
             print(f"Natural 20! Critical Success!!!")
         elif random20 == 1:
-            print("Natural 20! Pray to your god(s).")
+            print("Natural 1! Pray to your god(s).")
         else:
             print(random20)
 
