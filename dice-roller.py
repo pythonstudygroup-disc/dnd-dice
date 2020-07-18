@@ -66,6 +66,4 @@ def roll(dice):
         print("Invalid number")
         return
 
-    return random20
-
 roll(dice)
