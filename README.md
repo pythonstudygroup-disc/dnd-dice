@@ -6,5 +6,5 @@ Instructions:
 2. Run code ("Shift + F10" in Python, "F5" in Spyder)
 3. Type in the number correlated to the number of sides on the die you want to roll
 4. Type in the number of rolls of specified die to be rolled
-5. Output will provide list of rolls (if more than 1 roll)
+5. Output will provide roll or list of rolls, sum of the rolls, and average of the rolls
 6. To roll again, start at step 2
