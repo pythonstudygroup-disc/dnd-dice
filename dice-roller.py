@@ -2,9 +2,18 @@ import sys
 import random
 from statistics import mean
 
-print("Welcome, brave sir or madam or person!"
-      "\n\nInput the die you need to roll as an integer, then the number of"
-      " rolls you need. \n-- Ex. If you need to roll a d20 once, enter '20', then '1'\n-- To Quit, enter '0'")
+print(
+'''
+D&D Dice Roller, v0.1
+
+Welcome, adventurer!
+      
+Input the die you need to roll as an integer, then the 
+number of rolls you need.
+-- Ex. If you need to roll a d20 once, enter '20', then '1'
+-- To Quit, enter '0'
+'''
+)
 
 program_active = True
 rolls = []
