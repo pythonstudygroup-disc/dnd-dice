@@ -1,3 +1,7 @@
+import sys
+import random
+from statistics import mean
+
 def main():
     print(
 """
@@ -26,17 +30,17 @@ number of rolls you need.
         if num_rolls == 1:
             if rolls[0] == 20:
                 print("* * NATURAL 20 * *")
-                print(f"Roll: {rolls[0]}")
+                print(f"\nRoll: {rolls[0]}")
                 print("----------")
             elif rolls[0] == 1:
                 print(". . Natural 1 . .")
-                print(f"Roll: {rolls[0]}")
+                print(f"\nRoll: {rolls[0]}")
                 print("----------")
             else:
-                print(f"Roll: {rolls[0]}")
+                print(f"\nRoll: {rolls[0]}")
                 print("----------")
         else:
-            print(f"Rolls: {rolls}")
+            print(f"\nRolls: {rolls}")
             print("Sum:", sum(rolls))
             print("Average:", round(mean(rolls), 2))
             print("----------")
@@ -48,11 +52,13 @@ def choose_dice():
     Input: Input integer. If d20 needed, input '20'. If d6 needed, '6'. '0' is Quit.
       Returns: Returns dice as an integer or Quits.
     """
-    try:
-        dice = input("\nRoll... ")
-        dice = int(dice)
-    except ValueError:
-        print("Are you scared, peasant? Roll again...")
+    while True:
+        try:
+            dice = input("\nRoll... ")
+            dice = int(dice)
+            break
+        except ValueError:
+            print("Are you scared, peasant? Roll again...")
 
     if dice == 0:
         print("\nFare thee well.")
@@ -65,11 +71,13 @@ def choose_num_rolls(dice):
     Input: Input integer for number of rolls required. If 0 is input, program quits.
         Returns: Returns number of rolls required as an integer.
     """
-    try:
-        num_rolls = input(f"How many rolls?... ")
-        num_rolls = int(num_rolls)
-    except ValueError:
-        print("Inconceivable! Feed me integers!")
+    while True:
+        try:
+            num_rolls = input(f"How many rolls?... ")
+            num_rolls = int(num_rolls)
+            break
+        except ValueError:
+            print("Inconceivable! Feed me integers!")
 
     if num_rolls == 0:
         print("\nFare thee well.")
