@@ -5,7 +5,7 @@ from statistics import mean
 def main():
     print(
 """
-D&D Dice Roller, v0.1
+D&D Dice Roller, v1.0
 
 Welcome, adventurer!
 
