@@ -1,69 +1,95 @@
+import sys
 import random
-import math
+from statistics import mean
 
-print("Welcome, brave sir or madam or person! Choose your weapon..."
-      "\n\nInput the die you need to roll as an integer."
-      "\n\nie. If you need to roll a d20, type '20')")
+def main():
+    print(
+"""
+D&D Dice Roller, v1.0
+Welcome, adventurer!
+Input the die you need to roll as an integer, then the
+number of rolls you need.
+-- Ex. If you need to roll a d20 once, enter '20', then '1'
+-- To Quit, enter '0'
+"""
+    )
 
-while True:
-    try:
-        dice = int(input("Roll... "))
-        dice = int(dice)
-        break
-    except ValueError:
-        print("Are you scared, peasant? Please roll again...")
+    program_active = True
+    rolls = []
+    # valid_rolls = [100, 20, 12, 10, 8, 6, 4, 3] currently unused
+    while program_active:
+        dice = choose_dice()
+        num_rolls = choose_num_rolls(dice)
 
-def roll(dice):
-    '''Generates a random dice roll for major D&D dice.
+        #  calls roll function x times per user input, num_dice
+        for _ in range(num_rolls):
+            roll(dice, rolls)
 
-    Input: An integer such as 20 for a d20, 100 for d100, etc.
-    Output: Prints for user and returns dice roll result for later use.
-    '''
-    if dice == 100:
-        random100 = math.floor(random.random() * 100 + 1)
-        print(random100)
-        return random100
-    elif dice == 20:
-        random20 = math.floor(random.random() * 20 + 1)
-
-        if random20 == 20:
-            print(f"Natural 20! Critical Success!!!")
-        elif random20 == 1:
-            print("Natural 1! Pray to your god(s).")
+        if num_rolls == 1:
+            if rolls[0] == 20:
+                print("* * NATURAL 20 * *")
+                print(f"\nRoll: {rolls[0]}")
+                print("----------")
+            elif rolls[0] == 1:
+                print(". . Natural 1 . .")
+                print(f"\nRoll: {rolls[0]}")
+                print("----------")
+            else:
+                print(f"\nRoll: {rolls[0]}")
+                print("----------")
         else:
-            print(random20)
+            print(f"\nRolls: {rolls}")
+            print("Sum:", sum(rolls))
+            print("Average:", round(mean(rolls), 2))
+            print("----------")
 
-        return random20
+        rolls.clear()  # clears list of rolls
 
-    elif dice == 12:
-        random12 = math.floor(random.random() * 12 + 1)
-        print(random12)
-        return random12
-    elif dice == 10:
-        random10 = math.floor(random.random() * 10 + 1)
-        print(random10)
-        return random10
-    elif dice == 8:
-        random8 = math.floor(random.random() * 8 + 1)
-        print(random8)
-        return random8
-    elif dice == 6:
-        random6 = math.floor(random.random() * 6 + 1)
-        print(random6)
-        return(random6)
-    elif dice == 4:
-        random4 = math.floor(random.random() * 4 + 1)
-        print(random4)
-        return random4
-    elif dice == 3:
-        random3 = math.floor(random.random() * 3 + 1)
-        print(random3)
-        return random3
-    elif dice == 000:
-        print("You've escaped.")
-        return
+def choose_dice():
+    """User inputs required dice-type to be rolled.
+    Input: Input integer. If d20 needed, input '20'. If d6 needed, '6'. '0' is Quit.
+      Returns: Returns dice as an integer or Quits.
+    """
+    while True:
+        try:
+            dice = input("\nRoll... ")
+            dice = int(dice)
+            break
+        except ValueError:
+            print("Are you scared, peasant? Roll again...")
+
+    if dice == 0:
+        print("\nFare thee well.")
+        sys.exit()
     else:
-        print("Invalid number")
-        return
+        return dice
 
-roll(dice)
+def choose_num_rolls(dice):
+    """User inputs required number of rolls for selected dice-type. '0' is Quit.
+    Input: Input integer for number of rolls required. If 0 is input, program quits.
+        Returns: Returns number of rolls required as an integer.
+    """
+    while True:
+        try:
+            num_rolls = input(f"How many rolls?... ")
+            num_rolls = int(num_rolls)
+            break
+        except ValueError:
+            print("Inconceivable! Feed me integers!")
+
+    if num_rolls == 0:
+        print("\nFare thee well.")
+        sys.exit()
+    else:
+        return num_rolls
+
+def roll(dice, rolls):
+    """Lists available dice, generates random number(s), adds number(s) to list.
+    Input: Takes prompted user input of dice type required.
+        Returns: Random number based on selected dice type.
+    """
+    random_roll = random.randint(1, dice)
+    rolls.append(random_roll)
+
+
+main()
