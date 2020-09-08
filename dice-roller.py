@@ -7,9 +7,7 @@ def main():
     print(
 """
 D&D Dice Roller, v1.0
-
 Welcome, adventurer!
-
 Input the die you need to roll as an integer, then the
 number of rolls you need.
 -- Ex. If you need to roll a d20 once, enter '20', then '1'
@@ -19,12 +17,13 @@ number of rolls you need.
 
     program_active = True
     rolls = []
-    
+
     
     while program_active:
         dice = choose_dice()
         num_rolls = choose_num_rolls(dice)
 
+        #  calls roll function x times per user input, num_dice
         for _ in range(num_rolls):
             roll(dice, rolls)
 
@@ -48,7 +47,7 @@ number of rolls you need.
 
         rolls.clear()  # clears list of rolls
 
-        
+
 def choose_dice():
     """User inputs required dice-type to be rolled.
     Input: Input integer. If d20 needed, input '20'. If d6 needed, '6'. '0' is Quit.
@@ -60,7 +59,12 @@ def choose_dice():
             dice = int(dice)
             break
         except ValueError:
-            print("Are you scared, peasant? Roll again...")
+            # hidden button: press 'Enter' on "Roll..." to roll one d20.            
+            if dice == "":
+              print(f"\nRoll: {random.randint(1, 20)}")
+              print("----------")
+            else:
+              print("Are you scared, peasant? Roll again...")
 
     if dice == 0:
         print("\nFare thee well.")
@@ -68,7 +72,7 @@ def choose_dice():
     else:
         return dice
 
-    
+
 def choose_num_rolls(dice):
     """User inputs required number of rolls for selected dice-type. '0' is Quit.
     Input: Input integer for number of rolls required. If 0 is input, program quits.
@@ -88,7 +92,7 @@ def choose_num_rolls(dice):
     else:
         return num_rolls
 
-    
+
 def roll(dice, rolls):
     """Lists available dice, generates random number(s), adds number(s) to list.
     Input: Takes prompted user input of dice type required.
