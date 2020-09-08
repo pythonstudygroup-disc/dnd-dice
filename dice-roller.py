@@ -59,7 +59,12 @@ def choose_dice():
             dice = int(dice)
             break
         except ValueError:
-            print("Are you scared, peasant? Roll again...")
+            # hidden button: press 'Enter' on "Roll..." to roll one d20.            
+            if dice == "":
+              print(f"\nRoll: {random.randint(1, 20)}")
+              print("----------")
+            else:
+              print("Are you scared, peasant? Roll again...")
 
     if dice == 0:
         print("\nFare thee well.")
