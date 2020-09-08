@@ -3,6 +3,7 @@ import random
 from statistics import mean
 
 def main():
+    
     print(
 """
 D&D Dice Roller, v1.0
@@ -16,7 +17,8 @@ number of rolls you need.
 
     program_active = True
     rolls = []
-    # valid_rolls = [100, 20, 12, 10, 8, 6, 4, 3] currently unused
+
+    
     while program_active:
         dice = choose_dice()
         num_rolls = choose_num_rolls(dice)
@@ -45,6 +47,7 @@ number of rolls you need.
 
         rolls.clear()  # clears list of rolls
 
+
 def choose_dice():
     """User inputs required dice-type to be rolled.
     Input: Input integer. If d20 needed, input '20'. If d6 needed, '6'. '0' is Quit.
@@ -64,6 +67,7 @@ def choose_dice():
     else:
         return dice
 
+
 def choose_num_rolls(dice):
     """User inputs required number of rolls for selected dice-type. '0' is Quit.
     Input: Input integer for number of rolls required. If 0 is input, program quits.
@@ -82,6 +86,7 @@ def choose_num_rolls(dice):
         sys.exit()
     else:
         return num_rolls
+
 
 def roll(dice, rolls):
     """Lists available dice, generates random number(s), adds number(s) to list.
