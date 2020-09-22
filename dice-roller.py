@@ -57,7 +57,7 @@ def handle_dice_input():
         try:
             dice = dice_input()
             dice = int(dice)
-            # go to choose_num_dice or quit_()
+            # go to handle_num_rolls or quit_()
             if dice == 0:
                 quit_()
         except ValueError:
