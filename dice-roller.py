@@ -24,7 +24,8 @@ Welcome, adventurer!
 def quit_():
     """Upon user submission of '0', user will exit program. This function is
     called in either handle_dice_input or handle_num_rolls.
-        Returns: None. Prints message and sys.exit().
+    
+    Returns: None. Prints message and sys.exit().
     """
     print("\nFare thee well.")
     sys.exit()
@@ -139,7 +140,8 @@ def if_num_rolls_more(dice, num_rolls):
         - num_rolls, an integer
 
     Returns: No return. Prints information to user: : the rolls, the sum of the
-     rolls, and the average of the rolls."""
+    rolls, and the average of the rolls.
+    """
     rolls = []
 
     for _ in range(num_rolls):
