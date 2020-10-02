@@ -22,10 +22,7 @@ Welcome, adventurer!
 
 
 def quit_():
-    """Quit program; exit loop by user input of '0' during any prompt.
-    
-    Prints message and sys.exit().
-    """
+    """Quit program; exit loop by user input of '0' during any prompt."""
     print("\nFare thee well.")
     sys.exit()
 
