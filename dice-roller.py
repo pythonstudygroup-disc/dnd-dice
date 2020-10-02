@@ -20,9 +20,9 @@ Welcome, adventurer!
 
 
 def quit_():
-    """Upon user submission of '0', user will exit program. This function is
-    called in either handle_dice_input or handle_num_rolls.
-        Returns: None. Prints message and sys.exit().
+    """Upon user input of '0' during any prompt, user will exit program.
+    
+    Prints message and sys.exit().
     """
     print("\nFare thee well.")
     sys.exit()
@@ -74,7 +74,8 @@ def handle_dice_input():
 def roll_input():
     """Called from handle_num_rolls to take user input for their dice
     selection. Separate function for pytest / monkeypatching purposes.
-    Input: User inputs a whole number as their number of rolls required.
+    
+        Input: User inputs a whole number as their number of rolls required.
     Returns: num_rolls, sends user's number of rolls to handle_num_rolls.
     """
     num_rolls = input(f"How many rolls?... ")
@@ -85,7 +86,7 @@ def handle_num_rolls():
     """User input from roll_input for requested number of rolls is handled.
         - If 0, quit_()
         - If non-int, error handle and request new user input.
-        - Returns: num_rolls, if non-zero and an integer
+    Returns: num_rolls, if non-zero and an integer
     """
     while True:
         try:
@@ -102,7 +103,9 @@ def handle_num_rolls():
 def if_num_rolls_one(dice):
     """Creates a blank list of one roll, has roll function generate a random
     number,	then outputs information to user.
+    
     Input: dice, an integer
+    
     Returns: No return. Outputs the roll and outputs unique messages if roll
     was a d20 and outcome was a 1 or 20.
     """
@@ -126,11 +129,13 @@ def if_num_rolls_one(dice):
 def if_num_rolls_more(dice, num_rolls):
     """Creates a blank list of more than one roll, has roll function generate
     rolls, then outputs information to user.
+    
     Input:
         - dice, an integer
         - num_rolls, an integer
-    Returns: No return. Prints information to user: : the rolls, the sum of the
-     rolls, and the average of the rolls."""
+            
+    Prints information to user: the rolls, the sum of the rolls, and the
+    average of the rolls."""
     rolls = []
 
     for _ in range(num_rolls):
@@ -147,9 +152,11 @@ def if_num_rolls_more(dice, num_rolls):
 def handle_both(dice, num_rolls):
     """Invokes appropriate roll function depending on whether user needs
     one or more rolls.
+    
     Input:
         - dice, an integer
         - num_rolls, an integer
+            
     Returns: No return.
     """
     if num_rolls > 1:
@@ -161,9 +168,11 @@ def handle_both(dice, num_rolls):
 def roll(dice, rolls):
     """Lists available dice, generates random number(s), adds number(s) to
     list.
+    
     Input:
         - dice, an integer
         - rolls, an empty list to populate
+            
     Returns: No return, but appends list to be handled by if_num_rolls_more or
         if_num_rolls_one.
     """
@@ -172,10 +181,9 @@ def roll(dice, rolls):
 
 
 def run_program():
-    """Start program, display welcome screen, get user dice selection/input,
-    process user dice input, get user number of rolls with dice, roll.
-    Program continues until user chooses to quit_() with input of '0' during
-    any input prompt.
+    """Invokes a welcome message and runs the program.    
+
+    Program continues until user chooses to quit_().
     """
     welcome()
     program_active = True
