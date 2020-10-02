@@ -10,7 +10,9 @@ def welcome():
 print(
     """
 D&D Dice Roller, v1.0
+
 Welcome, adventurer!
+
     Input the die you need to roll as an integer, then the
     number of rolls you need.
     -- Ex. If you need to roll a d20 once, enter '20', then '1'
@@ -20,10 +22,7 @@ Welcome, adventurer!
 
 
 def quit_():
-    """Upon user input of '0' during any prompt, user will exit program.
-    
-    Prints message and sys.exit().
-    """
+    """Quit program; exit loop by user input of '0' during any prompt."""
     print("\nFare thee well.")
     sys.exit()
 
@@ -32,11 +31,13 @@ def quit_():
 def dice_input():
     """Called from handle_dice_input to take user input for their dice
     selection. Separate function for pytest / monkeypatching purposes.
-    Input: User inputs a whole number as their dice selection. Ex. '20'
+
+        Input: User input, a whole number as their dice selection. Ex. '20'
         to roll a d20, '8' to roll a d8, '100' to roll a d100.
+
     Returns: dice, sends user's dice selection to handle_dice_input.
     """
-    dice = input("\nRoll... ")
+    dice = input("\nRoll... ").strip()
     return dice
 
 
@@ -51,13 +52,14 @@ def handle_dice_input():
         - If 0, quit_()
         - If "", hidden_button()
         - If non-int, error handle and request new user input.
-        - Returns: dice, if non-zero and an integer.
+        
+    Returns: dice, if non-zero and an integer.
     """
     while True:
         try:
             dice = dice_input()
             dice = int(dice)
-            # go to handle_num_rolls or quit_()
+            # go to choose_num_dice or quit_()
             if dice == 0:
                 quit_()
         except ValueError:
@@ -74,11 +76,12 @@ def handle_dice_input():
 def roll_input():
     """Called from handle_num_rolls to take user input for their dice
     selection. Separate function for pytest / monkeypatching purposes.
-    
-        Input: User inputs a whole number as their number of rolls required.
+
+        Input: User input, a whole number as their number of rolls required.
+
     Returns: num_rolls, sends user's number of rolls to handle_num_rolls.
     """
-    num_rolls = input(f"How many rolls?... ")
+    num_rolls = input(f"How many rolls?... ").strip()
     return num_rolls
 
 
@@ -86,7 +89,8 @@ def handle_num_rolls():
     """User input from roll_input for requested number of rolls is handled.
         - If 0, quit_()
         - If non-int, error handle and request new user input.
-    Returns: num_rolls, if non-zero and an integer
+        
+    Returns: num_rolls, if a non-zero and an integer
     """
     while True:
         try:
@@ -103,11 +107,11 @@ def handle_num_rolls():
 def if_num_rolls_one(dice):
     """Creates a blank list of one roll, has roll function generate a random
     number,	then outputs information to user.
-    
-    Input: dice, an integer
-    
-    Returns: No return. Outputs the roll and outputs unique messages if roll
-    was a d20 and outcome was a 1 or 20.
+
+        Input: dice, an integer
+
+    Prints the roll and prints a unique messages if dice was a d20 and
+    roll was a 1 or 20.
     """
     rolls = []
     roll(dice, rolls)
@@ -129,13 +133,13 @@ def if_num_rolls_one(dice):
 def if_num_rolls_more(dice, num_rolls):
     """Creates a blank list of more than one roll, has roll function generate
     rolls, then outputs information to user.
-    
     Input:
         - dice, an integer
         - num_rolls, an integer
-            
-    Prints information to user: the rolls, the sum of the rolls, and the
-    average of the rolls."""
+
+    Returns: No return. Prints information to user: : the rolls, the sum of the
+    rolls, and the average of the rolls.
+    """
     rolls = []
 
     for _ in range(num_rolls):
@@ -153,10 +157,10 @@ def handle_both(dice, num_rolls):
     """Invokes appropriate roll function depending on whether user needs
     one or more rolls.
     
-    Input:
-        - dice, an integer
-        - num_rolls, an integer
-            
+        Input:
+            - dice, an integer
+            - num_rolls, an integer
+
     Returns: No return.
     """
     if num_rolls > 1:
@@ -168,11 +172,11 @@ def handle_both(dice, num_rolls):
 def roll(dice, rolls):
     """Lists available dice, generates random number(s), adds number(s) to
     list.
-    
-    Input:
-        - dice, an integer
-        - rolls, an empty list to populate
-            
+
+        Input:
+            - dice, an integer
+            - rolls, an empty list to populate
+
     Returns: No return, but appends list to be handled by if_num_rolls_more or
         if_num_rolls_one.
     """
@@ -181,9 +185,10 @@ def roll(dice, rolls):
 
 
 def run_program():
-    """Invokes a welcome message and runs the program.    
+    """Welcome message and runs program.
 
-    Program continues until user chooses to quit_().
+    Note: Program continues until user chooses to quit_() with input of '0' during
+    any input prompt.
     """
     welcome()
     program_active = True
