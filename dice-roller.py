@@ -4,8 +4,6 @@ from statistics import mean
 
 
 def welcome():
-    """A welcome message that prints once before program loop begins."""
-
 
 print(
     """
@@ -24,7 +22,7 @@ Welcome, adventurer!
 def quit_():
     """Quit program; exit loop by user input of '0' during any prompt.
     
-    Prints message and sys.exit().
+    Prints: Message and sys.exit().
     """
     print("\nFare thee well.")
     sys.exit()
@@ -34,9 +32,9 @@ def quit_():
 def dice_input():
     """Called from handle_dice_input to take user input for their dice
     selection. Separate function for pytest / monkeypatching purposes.
-
-        Input: User input, a whole number as their dice selection. Ex. '20'
-        to roll a d20, '8' to roll a d8, '100' to roll a d100.
+    
+    Input: User input, a whole number as their dice selection. Ex. '20'
+    to roll a d20, '8' to roll a d8, '100' to roll a d100.
 
     Returns: dice, sends user's dice selection to handle_dice_input.
     """
@@ -45,7 +43,10 @@ def dice_input():
 
 
 def hidden_button():
-    """A shortcut within handle_dice_input to roll a d20."""
+    """A shortcut within handle_dice_input to roll a d20.
+    
+    Prints: A random integer from 1 to 20.
+    """
     random_20 = random.randint(1, 20)
     print(random_20)
 
@@ -80,7 +81,7 @@ def roll_input():
     """Called from handle_num_rolls to take user input for their dice
     selection. Separate function for pytest / monkeypatching purposes.
 
-        Input: User input, a whole number as their number of rolls required.
+    Input: User input, a whole number as their number of rolls required.
 
     Returns: num_rolls, sends user's number of rolls to handle_num_rolls.
     """
@@ -111,9 +112,9 @@ def if_num_rolls_one(dice):
     """Creates a blank list of one roll, has roll function generate a random
     number,	then outputs information to user.
 
-        Input: dice, an integer
+    Input: dice, an integer
 
-    Prints the roll and prints a unique messages if dice was a d20 and
+    Prints: The roll and prints a unique messages if dice was a d20 and
     roll was a 1 or 20.
     """
     rolls = []
@@ -136,12 +137,13 @@ def if_num_rolls_one(dice):
 def if_num_rolls_more(dice, num_rolls):
     """Creates a blank list of more than one roll, has roll function generate
     rolls, then outputs information to user.
-    Input:
+    
+    Args:
         - dice, an integer
         - num_rolls, an integer
 
-    Returns: No return. Prints information to user: : the rolls, the sum of the
-    rolls, and the average of the rolls.
+    Prints: information to user; the rolls, the sum of the rolls, and the
+    average of the rolls.
     """
     rolls = []
 
@@ -160,9 +162,9 @@ def handle_both(dice, num_rolls):
     """Invokes appropriate roll function depending on whether user needs
     one or more rolls.
     
-        Input:
-            - dice, an integer
-            - num_rolls, an integer
+    Args:
+        - dice, an integer
+        - num_rolls, an integer
 
     Returns: No return.
     """
@@ -176,9 +178,9 @@ def roll(dice, rolls):
     """Lists available dice, generates random number(s), adds number(s) to
     list.
 
-        Input:
-            - dice, an integer
-            - rolls, an empty list to populate
+    Args:
+        - dice, an integer
+        - rolls, an empty list to populate
 
     Returns: No return, but appends list to be handled by if_num_rolls_more or
         if_num_rolls_one.
